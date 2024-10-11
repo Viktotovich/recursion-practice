@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function fib(depth) {
+        let sum = 0;
+        if (depth < 3) {
+          return 1;
+        } else {
+          return (sum += fib(depth - 1) + fib(depth - 2));
+        }
+      }
+
+      function iterativeFib(n) {
+        let sum;
+        let oldF = 0;
+        let newF = 1;
+        for (i = 1; i < n; i++) {
+          sum = oldF + newF;
+          oldF = newF;
+          newF = sum;
+        }
+        return sum;
+      }
+    </script>
+  </body>
+</html>
