@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+        if n is 1 stop,
+        if n is even, repeat with n/2
+        if n is odd, repeat with 3n + 1
+    */
+
+      function collatz(n, stepsToOne = 0) {
+        if (n === 1) {
+          console.log(stepsToOne);
+        } else if (n % 2 === 0) {
+          return collatz(n / 2, (stepsToOne += 1));
+        } else {
+          return collatz(3 * n + 1, (stepsToOne += 1));
+        }
+      }
+
+      /* After spending 5 hours stuck on javascript info's puzzles, this doesnt even come close in difficulty lol*/
+    </script>
+  </body>
+</html>
