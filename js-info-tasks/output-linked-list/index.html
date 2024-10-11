@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let list = {
+        value: 1,
+        next: {
+          value: 2,
+          next: {
+            value: 3,
+            next: {
+              value: 4,
+              next: null,
+            },
+          },
+        },
+      };
+
+      /* Goal: Write a function printList(list) that outputs list items one-by-one. */
+
+      /*Recursion - Reverse Order*/
+      function printReverseList(list) {
+        if (list.next === null) {
+          console.log(list.value);
+        } else {
+          printList(list.next);
+          console.log(list.value);
+        }
+      }
+
+      /* Depending on how data is needed, this solution starts from the inner most level due to stack */
+
+      /* Recursion, normal order */
+      function printList(list) {
+        if (list.next) {
+          console.log(list.value);
+          printList(list.next);
+        } else {
+          console.log(list.value);
+        }
+      }
+
+      /*Iteration*/
+      function iterativePrintList(list) {
+        let newList = list;
+
+        while (newList.next !== null) {
+          console.log(newList.value);
+          newList = newList.next;
+        }
+
+        //fencepost problem
+        console.log(newList.value);
+      }
+
+      //alternatively
+      //  while (newList !== undefined){}
+
+      function iterativeReverse(list) {
+        let listArr = [];
+
+        console.log(list);
+
+        while (list.next !== null) {
+          listArr.unshift(list.value);
+          list = list.next;
+        }
+
+        listArr.unshift(list.value);
+        listArr.forEach((el) => {
+          console.log(el);
+        });
+      }
+    </script>
+  </body>
+</html>
