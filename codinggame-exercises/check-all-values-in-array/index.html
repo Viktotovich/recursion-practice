@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* First actually difficult task */
+      //replacing the number in the arr with true/false seems like it aint a bad idea - it gets evaluated at the very last step
+      function all(arr, callback) {
+        //
+
+        if (arr[0] === true || arr[0] === false) {
+          return arr.includes(false) ? false : true;
+        } else {
+          return all(arr, callback);
+        }
+      }
+      //test
+      var allAreLessThanSeven = all([1, 2, 9], function (num) {
+        console.log(num);
+        return num < 7;
+      });
+
+      console.log(allAreLessThanSeven);
+
+      /*
+        function all(arr, callback) {
+          console.log(arr);
+          let index = arr.length - 1;
+          let boolArr = [];
+
+          if (arr.length === 1) {
+            callback(arr[index]);
+            return boolArr.includes(false) ? false : true;
+          } else {
+            boolArr.unshift(callback(arr[index]));
+            arr.pop();
+            return all(arr, callback);
+          }
+        }
+
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+        I am practically handicapped without .forEach
+      */
+    </script>
+  </body>
+</html>
