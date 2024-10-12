@@ -9,15 +9,7 @@
     <script>
       /* First actually difficult task */
       //replacing the number in the arr with true/false seems like it aint a bad idea - it gets evaluated at the very last step
-      function all(arr, callback) {
-        //
 
-        if (arr[0] === true || arr[0] === false) {
-          return arr.includes(false) ? false : true;
-        } else {
-          return all(arr, callback);
-        }
-      }
       //test
       var allAreLessThanSeven = all([1, 2, 9], function (num) {
         console.log(num);

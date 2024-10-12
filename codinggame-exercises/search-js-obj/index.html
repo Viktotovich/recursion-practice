@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* My first solution: 
+      function contains(obj, item) {
+        if (typeof obj !== "object") {
+          alert(false);
+        } else {
+          Object.keys(obj).forEach((key) => {
+            if (obj[key] === item) {
+              console.log(obj[key]);
+              alert(true);
+            } else {
+              return contains(obj[key], item);
+            }
+          });
+        }
+      }
+
+      Problems: 
+      1 - It is inefficient in memory use
+      2 - It keeps going even after it found the item 
+      3 - Using isFound makes it that "false" isn't returned
+        */
+
+      /* Refactored Solution: */
+      /*
+      function contains(obj, item) {
+        if (typeof obj !== "object") {
+          alert(false);
+          return false;
+        } else {
+          for (const [key, value] of Object.entries(obj)) {
+            if (obj[key] === item) {
+              alert(true);
+              return true;
+            } else {
+              return contains(obj[key], item);
+            }
+          }
+        }
+      }
+
+    */
+
+      /* 
+      Elegant Solution (Credits to:)
+      https://gist.github.com/JoshDevHub/b00125f483d4a1ecc257eaa030916973
+      */
+      function contains(object, searchValue) {
+        if (typeof object !== "object" || object === null) {
+          return object === searchValue;
+        }
+
+        for (const value of Object.values(object)) {
+          if (contains(value, searchValue)) {
+            console.log(true);
+            return true;
+          }
+        }
+        console.log(false);
+        return false;
+      }
+
+      //test
+      var nestedObject = {
+        data: {
+          info: {
+            stuff: {
+              thing: {
+                moreStuff: {
+                  magicNumber: 44,
+                  something: "foo2",
+                },
+              },
+            },
+          },
+        },
+      };
+
+      let hasIt = contains(nestedObject, 44); // true
+      let doesntHaveIt = contains(nestedObject, "foo"); // false
+    </script>
+  </body>
+</html>
