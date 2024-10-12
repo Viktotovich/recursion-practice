@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+       * Is the arr empty?
+       * Is the arr nested?
+       * Yes? - Go deeper
+       * No? - check is it a number? n ** 2 it : discard it
+       */
+      function SumSquares(arr) {
+        let sum = 0;
+
+        if (arr.length === 0) {
+          return 0;
+        } else if (Array.isArray(arr)) {
+          arr.forEach((element) => {
+            if (Number.isInteger(element)) {
+              sum += element ** 2;
+              return sum;
+            } else {
+              return (sum += SumSquares(element));
+            }
+          });
+        }
+
+        return sum;
+      }
+
+      //test
+      var l = [1, 2, 3];
+      console.log(SumSquares(l)); // 1 + 4 + 9 = 14
+
+      l = [[1, 2], 3];
+      console.log(SumSquares(l)); // 1 + 4 + 9 = 14
+
+      l = [[[[[[[[[1]]]]]]]]];
+      console.log(SumSquares(l)); // 1 = 1
+
+      l = [10, [[10], 10], [10]];
+      console.log(SumSquares(l)); // 100 + 100 + 100 + 100 = 400
+
+      /* First version, meant to make the problem easier to solve:
+
+      function SumSquares(arr) {
+        let index = 0;
+        arr[index] = arr[index] ** 2;
+        let arrCopy = arr.slice(1);
+        if (arr.length === 1) {
+          return arr[index];
+        } else {
+          return (arr[index] += SumSquares(arrCopy));
+        }
+      }
+
+      Second version, maybe I am close, maybe not
+
+            function SumSquares(arr) {
+        console.log(arr);
+        let sum = 0;
+        if (arr.length === 0) {
+          return arr[0];
+        } else if (Array.isArray(arr)) {
+          arr.forEach((element) => {
+            if (Number.isInteger(element)) {
+              arr[0] = element ** 2;
+              console.log(arr[0]);
+              return SumSquares(element);
+            } else {
+              sum += SumSquares(element);
+            }
+          });
+        }
+      }
+    */
+    </script>
+  </body>
+</html>
